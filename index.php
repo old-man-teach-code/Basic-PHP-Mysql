@@ -6,9 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>User List</title>
 </head>
 <?php
+session_start();
+if (isset($_SESSION[""]) && $_SESSION["IS_LOGINED"]){
+    echo "<script>alert('Hello ".$_SESSION["FULL_NAME"]."')</script>";
+}else{
+    header("Location: login.php");
+}
 // Kết nối với CSDL
 $db = new PDO("mysql:host=localhost;dbname=user_management", "root");
 ?>
@@ -54,8 +60,8 @@ $db = new PDO("mysql:host=localhost;dbname=user_management", "root");
                     ?>
                 </table>
             </div>
-            <div class="col-sm-2">
-
+            <div class="col-sm-2 float-right mt-2">
+                    <a href="/demo/logout.php" class="btn btn-danger"> Logout </a>
             </div>
         </div>
     </div>
